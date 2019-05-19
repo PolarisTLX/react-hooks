@@ -9,23 +9,36 @@ const App = () => {
   return(
     <Fragment>
       <nav className="navigation">
-        <a><img src="http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png"/></a>
+        <a><img src="http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png" height="50px"/></a>
         <ul>
           <li>Home</li>
         </ul>
       </nav>
       <main>
         <div className="leftContent">
-          <img src="http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png"/>
+          <img src="http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png" height="50px"/>
           <form>
             <h2 className="formTitle">Add a bookmark</h2>
             <div>
               <label for="linkTitle" className="formLabel">Enter a name for your bookmark</label>
+              <input
+                type="text"
+                name="linkTitle"
+                minLength="1"
+                maxLength="25"
+                placeholder="25 characters max"
+              />
             </div>
             <div>
-
+              <label for="linkHref" className="formLabel">Enter the link for your bookmark</label>
+              <input
+                type="text"
+                name="linkHref"
+                minLength="7"
+                placeholder="https://example.com"
+              />
             </div>
-            <button></button>
+            <button>Add</button>
           </form>
         </div>
         <div className="rightContent">
@@ -33,9 +46,6 @@ const App = () => {
         </div>
       </main>
     </Fragment>
-    <div>
-      <h1>Hello World from Hooks!</h1>
-    </div>
   )
 }
 
