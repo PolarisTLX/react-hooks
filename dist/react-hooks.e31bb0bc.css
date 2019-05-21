@@ -88,5 +88,39 @@ main {
   color: black;
 }
 
+.rightContent {
+  background: #61dafb;
+  height: calc(100vh - 56px);
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.rightContent .linkCard {
+  background: #333;
+  width: 60%;
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  /* flex-shrink: 0;   */  /*not needed apparently*/
+}
+
+.rightContent .linkCardImage {
+  background-size: cover;
+  background-position: center;
+  transform: scale(0.8, 0.8);
+  height: 100px;
+  width: 110px;
+}
+
+.rightContent .linkCardLink a {
+  color: white;
+  margin-left: 10px;
+}
+
 
 /*# sourceMappingURL=/react-hooks.e31bb0bc.css.map */

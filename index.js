@@ -49,11 +49,11 @@ const App = () => {
           </form>
         </div>
         <div className="rightContent">
-          <div>
-            <div style={linkImageStyle}>
+          <div className="linkCard">
+            <div className="linkCardImage" style={linkImageStyle}>
 
             </div>
-            <div>
+            <div className="linkCardLink">
               <h2><a href="#">My Link</a></h2>
             </div>
           </div>
