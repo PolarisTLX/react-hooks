@@ -25748,7 +25748,38 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"C:/Users/paula/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"components/LinkCard.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+// new way to make compoenent does not require classes since React 16.8.1 / hooks
+var LinkCard = function LinkCard(props) {
+  var linkImageStyle = {
+    backgroundImage: 'url(\'http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png\')'
+  };
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
+    className: "linkCard"
+  }, _react.default.createElement("div", {
+    className: "linkCardImage",
+    style: linkImageStyle
+  }), _react.default.createElement("div", {
+    className: "linkCardLink"
+  }, _react.default.createElement("h2", null, _react.default.createElement("a", {
+    href: "#"
+  }, "My Link")))));
+};
+
+var _default = LinkCard;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"C:/Users/paula/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -25827,6 +25858,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
+var _LinkCard = _interopRequireDefault(require("./components/LinkCard"));
+
 require("./main.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -25836,6 +25869,14 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -25866,9 +25907,19 @@ var App = function App() {
       newCard = _useState4[0],
       setNewCard = _useState4[1];
 
-  var linkImageStyle = {
-    backgroundImage: 'url(\'http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png\')'
+  var dispatchCardSet = function dispatchCardSet(payload) {
+    var oldArray = cardData; // this is grabbing values from line 13
+    // new value:  all oldArray + new payload/new stuff
+
+    var newArray = [].concat(_toConsumableArray(oldArray), [payload]);
+    setCardData(newArray); // reset the setNewCard so the imputs are empty again:  ..not doing a difference?
+
+    setNewCard({
+      linkHref: '',
+      linkName: ''
+    });
   };
+
   return _react.default.createElement(_react.Fragment, null, _react.default.createElement("nav", {
     className: "navigation"
   }, _react.default.createElement("a", null, _react.default.createElement("img", {
@@ -25885,7 +25936,7 @@ var App = function App() {
   }, _react.default.createElement("h2", {
     className: "formTitle"
   }, "Add a bookmark"), _react.default.createElement("div", null, _react.default.createElement("label", {
-    for: "linkTitle",
+    htmlFor: "linkTitle",
     className: "formLabel"
   }, "Enter a name for your bookmark"), _react.default.createElement("input", {
     // old way:
@@ -25903,7 +25954,7 @@ var App = function App() {
     maxLength: "25",
     placeholder: "25 characters max"
   })), _react.default.createElement("div", null, _react.default.createElement("label", {
-    for: "linkHref",
+    htmlFor: "linkHref",
     className: "formLabel"
   }, "Enter the link for your bookmark"), _react.default.createElement("input", {
     value: newCard.linkHref // onChange={e => setNewCard({...cuddentValueOfNewCard, attributeToBeChanged})}
@@ -25918,22 +25969,17 @@ var App = function App() {
     name: "linkHref",
     minLength: "7",
     placeholder: "https://example.com"
-  })), _react.default.createElement("button", null, "Add"))), _react.default.createElement("div", {
+  })), _react.default.createElement("button", {
+    onClick: function onClick() {
+      return dispatchCardSet(newCard);
+    }
+  }, "Add"))), _react.default.createElement("div", {
     className: "rightContent"
-  }, _react.default.createElement("div", {
-    className: "linkCard"
-  }, _react.default.createElement("div", {
-    className: "linkCardImage",
-    style: linkImageStyle
-  }), _react.default.createElement("div", {
-    className: "linkCardLink"
-  }, _react.default.createElement("h2", null, _react.default.createElement("a", {
-    href: "#"
-  }, "My Link")))))));
+  }, _react.default.createElement(_LinkCard.default, null))));
 };
 
 _reactDom.default.render(_react.default.createElement(App, null), document.getElementById('app'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./main.css":"main.css"}],"C:/Users/paula/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/LinkCard":"components/LinkCard.js","./main.css":"main.css"}],"C:/Users/paula/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
