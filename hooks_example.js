@@ -36,3 +36,15 @@ const App = () => {
   const [cardDate, setCardDate] = useState([{ linkName: 'my link', linkHref: 'https://github.com' }])
 
 }
+
+
+// Array example to explain array destructuring above?:
+const myArray = [1, 2, 3];
+
+const [one, two, three] = myArray;
+
+//result:
+console.log(one); //1
+
+const [state, setState] = useState(1);
+//returns: [1, setState/somefunction]
